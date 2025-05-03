@@ -1,0 +1,17 @@
+# .gitignore
+
+# Terraform files
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+crash.log
+*.log
+*.backup
+*.tfplan
+
+# IDEs and OS
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
