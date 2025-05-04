@@ -33,7 +33,7 @@ resource "azurerm_dev_test_global_vm_shutdown_schedule" "vm_ui_shutdown" {
   location           = var.location
   enabled            = true
 
-  daily_recurrence_time = "1900"  # 7:00 PM (24-hour format)
+  daily_recurrence_time = "1900" # 7:00 PM (24-hour format)
   timezone              = "India Standard Time"
 
   notification_settings {
