@@ -33,7 +33,7 @@ resource "azurerm_dev_test_global_vm_shutdown_schedule" "vm_ui_shutdown" {
   location           = var.location
   enabled            = true
 
-  daily_recurrence_time = "1900"  # 7:00 PM (24-hour format)
+  daily_recurrence_time = "1900" # 7:00 PM (24-hour format)
   timezone              = "India Standard Time"
 
   notification_settings {
@@ -41,4 +41,20 @@ resource "azurerm_dev_test_global_vm_shutdown_schedule" "vm_ui_shutdown" {
     time_in_minutes = "60"
     webhook_url     = null
   }
+}
+
+## Run scripts after boot up
+
+resource "azurerm_virtual_machine_extension" "nginx_install" {
+  name                 = "nginx-install"
+  virtual_machine_id   = azurerm_linux_virtual_machine.vm_ui.id
+  publisher            = "Microsoft.Azure.Extensions"
+  type                 = "CustomScript"
+  type_handler_version = "2.0"
+
+  settings = <<SETTINGS
+    {
+      "commandToExecute": "sudo apt-get update && sudo apt-get install -y nginx && sudo systemctl enable nginx && sudo systemctl start nginx"
+    }
+SETTINGS
 }

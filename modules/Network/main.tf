@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "rg_vm_ui" {
-    name = var.rg_name
-    location = var.location 
+  name     = var.rg_name
+  location = var.location
 }
 
 resource "azurerm_virtual_network" "vnet_vm_ui" {
